@@ -1,0 +1,230 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo-fanatic-arts.png';
+import { site, nav } from '../data/site';
+
+interface Props { transparent?: boolean }
+const { transparent = false } = Astro.props;
+const here = Astro.url.pathname;
+const isCurrent = (href: string) => here === href || (href !== '/' && here.startsWith(href));
+---
+
+<header class:list={['hdr', transparent && 'hdr--over']} data-header>
+  <div class="hdr__inner">
+    <a class="hdr__logo" href="/" aria-label={`${site.name} — home`}>
+      <Image src={logo} alt="" width={280} densities={[1, 2]} loading="eager" />
+      <span class="visually-hidden">{site.name}</span>
+    </a>
+
+    <nav class="hdr__nav" aria-label="Primary">
+      <ul>
+        {nav.map((item) => (
+          <li>
+            <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <a class="btn btn--gold hdr__cta" href="/contact/">Join Fanatic Arts</a>
+
+    <button class="hdr__toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" data-menu-toggle>
+      <span class="hdr__bars" aria-hidden="true"><i></i><i></i></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+  </div>
+
+  <div class="mnav" id="mobile-nav" data-mobile-nav hidden>
+    <nav aria-label="Primary (mobile)">
+      <ul>
+        {nav.map((item, i) => (
+          <li style={`--i:${i}`}>
+            <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+              <span class="mnav__n">{String(i + 1).padStart(2, '0')}</span>{item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <a class="btn btn--gold mnav__cta" href="/contact/">Join Fanatic Arts</a>
+  </div>
+</header>
+
+<style>
+  .hdr {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.45s var(--ease), border-color 0.45s var(--ease), color 0.45s var(--ease);
+  }
+  /* Over a hero: transparent until scrolled. */
+  .hdr--over {
+    position: fixed;
+    inset-inline: 0;
+    isolation: isolate;
+    background: transparent;
+    border-bottom-color: transparent;
+    color: var(--paper);
+  }
+  .hdr--over :global(img) { filter: brightness(0) invert(1); }
+  /* Guarantees nav legibility over bright areas of the hero photograph. */
+  .hdr--over::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 220%;
+    background: linear-gradient(to bottom, rgb(6 5 4 / 0.62) 0%, rgb(6 5 4 / 0.28) 55%, transparent 100%);
+    pointer-events: none;
+    z-index: -1;
+    transition: opacity 0.45s var(--ease);
+  }
+  .hdr--over.is-stuck::before { opacity: 0; }
+  .hdr--over.is-stuck {
+    background: color-mix(in srgb, var(--ink) 92%, transparent);
+    backdrop-filter: blur(14px) saturate(1.2);
+    border-bottom-color: color-mix(in srgb, var(--paper) 14%, transparent);
+  }
+
+  .hdr__inner {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding: clamp(0.7rem, 1.4vw, 1.1rem) var(--gutter);
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 3rem);
+  }
+
+  .hdr__logo { flex: none; display: block; line-height: 0; }
+  .hdr__logo :global(img) {
+    width: clamp(104px, 11vw, 148px);
+    height: auto;
+    transition: filter 0.45s var(--ease);
+  }
+
+  .hdr__nav { margin-inline-start: auto; }
+  .hdr__nav ul {
+    display: flex;
+    gap: clamp(1rem, 2.2vw, 2.4rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .hdr__nav a {
+    position: relative;
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding-block: 0.35rem;
+    white-space: nowrap;
+  }
+  .hdr__nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s var(--ease);
+  }
+  .hdr__nav a:hover::after,
+  .hdr__nav a[aria-current='page']::after { transform: scaleX(1); }
+
+  .hdr__cta { flex: none; padding: 0.75em 1.35em; }
+
+  .hdr__toggle {
+    display: none;
+    margin-inline-start: auto;
+    background: none;
+    border: 0;
+    padding: 0.6rem;
+    cursor: pointer;
+  }
+  .hdr__bars { display: grid; gap: 6px; width: 26px; }
+  .hdr__bars i {
+    display: block;
+    height: 1.5px;
+    background: currentColor;
+    transition: transform 0.4s var(--ease), opacity 0.3s;
+  }
+  .hdr.is-open .hdr__bars i:first-child { transform: translateY(3.75px) rotate(45deg); }
+  .hdr.is-open .hdr__bars i:last-child { transform: translateY(-3.75px) rotate(-45deg); }
+
+  /* Mobile overlay */
+  .mnav {
+    display: none;
+    background: var(--ink);
+    color: var(--paper);
+    padding: clamp(1.5rem, 6vw, 3rem) var(--gutter) clamp(2.5rem, 8vw, 4rem);
+  }
+  .mnav ul { list-style: none; margin: 0 0 2rem; padding: 0; }
+  .mnav li + li { border-top: 1px solid color-mix(in srgb, var(--paper) 14%, transparent); }
+  .mnav a {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+  .mnav a[aria-current='page'] { color: var(--gold-300); }
+  .mnav__n {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+  }
+  .mnav__cta { width: 100%; justify-content: center; }
+
+  @media (max-width: 62rem) {
+    .hdr__nav, .hdr__cta { display: none; }
+    .hdr__toggle { display: block; }
+    .hdr.is-open { background: var(--ink); color: var(--paper); border-bottom-color: transparent; }
+    .hdr.is-open :global(.hdr__logo img) { filter: brightness(0) invert(1); }
+    .mnav { display: block; }
+    .mnav[hidden] { display: none; }
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const panel = document.querySelector<HTMLElement>('[data-mobile-nav]');
+
+  if (header && toggle && panel) {
+    const setOpen = (open: boolean) => {
+      header.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      panel.hidden = !open;
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+
+    toggle.addEventListener('click', () => setOpen(panel.hidden));
+    panel.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !panel.hidden) { setOpen(false); toggle.focus(); }
+    });
+    // Reset when leaving the mobile breakpoint.
+    const mq = window.matchMedia('(min-width: 62.0625rem)');
+    mq.addEventListener('change', (e) => { if (e.matches) setOpen(false); });
+  }
+
+  // Transparent header solidifies once the hero is behind it.
+  if (header?.classList.contains('hdr--over')) {
+    const onScroll = () => header.classList.toggle('is-stuck', window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+</script>

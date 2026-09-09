@@ -1,0 +1,75 @@
+---
+import Ph from './Ph.astro';
+import { journey } from '../data/journey';
+---
+
+<div class="jt">
+  <ol class="jt__track" tabindex="0" role="region" aria-label="The creative journey, scrollable">
+    {journey.map((s) => (
+      <li class="jt__step">
+        <figure>
+          <span class="jt__media media media--zoom">
+            <Ph
+              name={s.photo}
+              alt={s.body}
+              sizes="(min-width: 62rem) 30vw, (min-width: 40rem) 46vw, 78vw"
+              widths={[380, 560, 760, 1000, 1400]}
+            />
+          </span>
+          <figcaption class="jt__body">
+            <span class="jt__n">{s.n}</span>
+            <h3 class="display display--s">{s.title}</h3>
+            <p>{s.body}</p>
+          </figcaption>
+        </figure>
+      </li>
+    ))}
+  </ol>
+  <p class="jt__hint" aria-hidden="true">Scroll →</p>
+</div>
+
+<style>
+  .jt { position: relative; }
+  .jt__track {
+    list-style: none;
+    margin: 0;
+    padding: 0 var(--gutter) 1.25rem;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(78vw, 24rem);
+    gap: clamp(0.9rem, 2vw, 1.75rem);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) transparent;
+  }
+  .jt__track::-webkit-scrollbar { height: 3px; }
+  .jt__track::-webkit-scrollbar-thumb { background: var(--gold); }
+  .jt__step { scroll-snap-align: start; }
+  .jt__step figure { margin: 0; display: grid; gap: 1.1rem; }
+
+  .jt__media { display: block; aspect-ratio: 4 / 5; }
+  .jt__media :global(img) { width: 100%; height: 100%; object-fit: cover; }
+
+  .jt__n {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+  }
+  .jt__body { display: grid; gap: 0.5rem; }
+  .jt__body p { font-size: var(--step--1); color: var(--muted); max-width: 34ch; }
+
+  .jt__hint {
+    padding-inline: var(--gutter);
+    margin-top: 0.5rem;
+    font-size: var(--step--1);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  @media (min-width: 62rem) {
+    .jt__track { grid-auto-columns: 22rem; }
+  }
+</style>

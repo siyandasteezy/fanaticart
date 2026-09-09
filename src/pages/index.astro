@@ -1,0 +1,261 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import DisciplinePanels from '../components/DisciplinePanels.astro';
+import JourneyTrack from '../components/JourneyTrack.astro';
+import ProgrammeRow from '../components/ProgrammeRow.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+import CTABanner from '../components/CTABanner.astro';
+import Ph from '../components/Ph.astro';
+import { site, values } from '../data/site';
+import { programmes } from '../data/programmes';
+---
+
+<BaseLayout title={site.name} transparentHeader>
+  <Hero />
+
+  <!-- What Fanatic Arts does -->
+  <section class="section" id="what-we-do" aria-labelledby="wwd-h">
+    <div class="wrap wwd">
+      <div class="wwd__text reveal">
+        <p class="eyebrow">What we do</p>
+        <h2 class="display display--m" id="wwd-h">
+          An arts institution and a working creative business — under one roof.
+        </h2>
+        <p class="lede">
+          Structured training for youth and adults across six disciplines, delivered
+          privately and in groups. Beyond teaching, Fanatic Arts performs, produces,
+          documents and designs — a creative ecosystem that preserves artistic heritage
+          while generating sustainable work.
+        </p>
+        <a class="btn btn--ghost" href="/about/">More about Fanatic Arts <span class="arw" aria-hidden="true">→</span></a>
+      </div>
+
+      <figure class="wwd__stack reveal" style="--reveal-delay:120ms">
+        <span class="wwd__img wwd__img--a media media--zoom">
+          <Ph name="g-guitar-lesson" sizes="(min-width: 62rem) 32vw, 62vw" widths={[420, 620, 900, 1200]} />
+        </span>
+        <span class="wwd__img wwd__img--b media media--zoom">
+          <Ph name="g-choir" sizes="(min-width: 62rem) 22vw, 44vw" widths={[320, 480, 700, 900]} />
+        </span>
+      </figure>
+    </div>
+
+    <div class="wrap vm">
+      <div class="vm__item reveal">
+        <p class="eyebrow">Vision</p>
+        <p class="vm__quote display display--s">{site.vision}</p>
+      </div>
+      <div class="vm__item reveal" style="--reveal-delay:100ms">
+        <p class="eyebrow">Mission</p>
+        <p class="vm__quote display display--s">{site.mission}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Six disciplines -->
+  <section class="section on-dark" aria-labelledby="disc-h">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Six disciplines"
+        title="One institution. Six ways in."
+        lede="Each discipline is taught on its own terms — and every one of them ends up on the same stage."
+        class="reveal"
+      />
+    </div>
+    <h2 class="visually-hidden" id="disc-h">The six disciplines</h2>
+    <div class="disc__band">
+      <DisciplinePanels />
+    </div>
+  </section>
+
+  <!-- The creative journey -->
+  <section class="section jt-sec" aria-labelledby="journey-h">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="The creative journey"
+        title="Discover. Learn. Practice. Create. Collaborate. Perform. Grow."
+        lede="A learner does not arrive finished. This is the arc every Fanatic Arts programme is built around — and nobody skips the middle."
+        class="reveal"
+      />
+      <h2 class="visually-hidden" id="journey-h">The creative journey</h2>
+    </div>
+    <JourneyTrack />
+  </section>
+
+  <!-- Programmes -->
+  <section class="section" aria-labelledby="prog-h">
+    <div class="wrap stack" style="--stack-gap: clamp(3rem, 8vw, 7rem)">
+      <SectionHead
+        eyebrow="Programmes"
+        title="Who it is for"
+        lede="Children, youth, adults and institutions — different starting points, the same standard."
+        class="reveal"
+      />
+      <h2 class="visually-hidden" id="prog-h">Programmes</h2>
+      {programmes.map((p, i) => <ProgrammeRow programme={p} flip={i % 2 === 1} />)}
+    </div>
+  </section>
+
+  <!-- Excellence & sustainable creative futures -->
+  <section class="section excel on-dark" aria-labelledby="excel-h">
+    <div class="excel__media media">
+      <Ph name="backstage" alt="" sizes="100vw" widths={[640, 960, 1400, 1920, 2200]} />
+    </div>
+    <div class="wrap excel__inner">
+      <SectionHead
+        eyebrow="Excellence & sustainability"
+        title="Talent is not enough. It has to be built, and it has to be able to feed you."
+        lede="Fanatic Arts trains artists who can work — technically capable, professionally disciplined and equipped to earn from the craft."
+        class="reveal excel__head"
+      />
+      <h2 class="visually-hidden" id="excel-h">Excellence and sustainable creative futures</h2>
+
+      <ul class="excel__vals">
+        {values.map((v, i) => (
+          <li class="reveal" style={`--reveal-delay:${(i % 3) * 90}ms`}>
+            <h3>{v.title}</h3>
+            <p>{v.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Stories / people / impact -->
+  <section class="section" aria-labelledby="stories-h">
+    <div class="wrap stories">
+      <div class="stories__text reveal">
+        <p class="eyebrow">Stories &amp; impact</p>
+        <h2 class="display display--m" id="stories-h">Seventeen years of building it properly.</h2>
+        <p class="lede">
+          The vision began in {site.founded}, long before the organisation was formally
+          structured. It moved through Fanatic Reproduction and Fanatic Productions before
+          becoming Fanatic Arts — each stage sharpening the mandate.
+        </p>
+        <p class="stories__p">
+          Today that mandate reaches children and youth, emerging creatives, adult and senior
+          learners, and the schools, churches and community institutions that partner with us.
+        </p>
+        <a class="btn btn--ghost" href="/stories/">Read the story <span class="arw" aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="stories__media reveal" style="--reveal-delay:120ms">
+        <span class="media media--zoom">
+          <Ph name="g-dance-group" sizes="(min-width: 62rem) 46vw, 92vw" widths={[520, 760, 1050, 1400]} />
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="section gal-sec" aria-labelledby="gal-h">
+    <div class="wrap gal__head">
+      <SectionHead eyebrow="Creative work" title="The work, as it happens." class="reveal" />
+      <h2 class="visually-hidden" id="gal-h">Gallery</h2>
+      <a class="btn btn--ghost" href="/gallery/">Open the gallery <span class="arw" aria-hidden="true">→</span></a>
+    </div>
+    <div class="wrap">
+      <GalleryGrid limit={12} />
+    </div>
+  </section>
+
+  <CTABanner
+    title="Come and build something that lasts."
+    body="Private and group lessons across all six disciplines, for every age. Tell us where you are starting from."
+    secondary={{ label: 'See programmes', href: '/programmes/' }}
+  />
+</BaseLayout>
+
+<style>
+  /* What we do */
+  .wwd { display: grid; gap: clamp(2.5rem, 6vw, 5rem); align-items: center; }
+  @media (min-width: 62rem) {
+    .wwd { grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr); }
+  }
+  .wwd__text { display: grid; gap: clamp(1rem, 2vw, 1.6rem); }
+  .wwd__text .btn { justify-self: start; margin-top: 0.75rem; }
+
+  .wwd__stack { position: relative; margin: 0; padding-bottom: clamp(3rem, 8vw, 6rem); }
+  .wwd__img { display: block; }
+  .wwd__img :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .wwd__img--a { aspect-ratio: 4 / 5; }
+  .wwd__img--b {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 52%;
+    aspect-ratio: 1 / 1;
+    border: clamp(6px, 1.2vw, 14px) solid var(--paper);
+  }
+
+  /* Vision / mission */
+  .vm {
+    margin-top: clamp(3.5rem, 9vw, 7rem);
+    display: grid;
+    gap: clamp(1.75rem, 4vw, 3rem);
+    padding-top: clamp(2rem, 4vw, 3rem);
+    border-top: 1px solid var(--rule);
+  }
+  @media (min-width: 48rem) { .vm { grid-template-columns: 1fr 1fr; } }
+  .vm__item { display: grid; gap: 1rem; align-content: start; }
+  .vm__quote { max-width: 22ch; }
+
+  .disc__band { margin-top: clamp(2.5rem, 5vw, 4rem); }
+  .jt-sec > .wrap { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+
+  /* Excellence */
+  .excel { position: relative; isolation: isolate; overflow: clip; }
+  .excel__media { position: absolute; inset: 0; z-index: -1; }
+  .excel__media :global(img) { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
+  .excel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(115deg, rgb(11 10 8 / 0.94) 12%, rgb(11 10 8 / 0.6) 100%);
+  }
+  .excel__head { max-width: 46rem; }
+  .excel__vals {
+    list-style: none;
+    margin: clamp(3rem, 7vw, 5rem) 0 0;
+    padding: 0;
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    grid-template-columns: minmax(0, 1fr);
+  }
+  @media (min-width: 40rem) { .excel__vals { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 62rem) { .excel__vals { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .excel__vals li { padding-top: 1.25rem; border-top: 1px solid var(--rule); }
+  .excel__vals h3 {
+    font-family: var(--font-sans);
+    font-size: var(--step-0);
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.3;
+    margin-bottom: 0.4rem;
+  }
+  .excel__vals p { font-size: var(--step--1); color: var(--muted); }
+
+  /* Stories */
+  .stories { display: grid; gap: clamp(2.5rem, 6vw, 4.5rem); align-items: center; }
+  @media (min-width: 62rem) {
+    .stories { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  }
+  .stories__text { display: grid; gap: clamp(0.9rem, 1.8vw, 1.5rem); }
+  .stories__text .btn { justify-self: start; margin-top: 0.75rem; }
+  .stories__p { color: var(--muted); max-width: 46ch; }
+  .stories__media .media { aspect-ratio: 5 / 4; }
+  .stories__media :global(img) { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Gallery head */
+  .gal__head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 2rem;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+</style>

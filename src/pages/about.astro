@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CTABanner from '../components/CTABanner.astro';
+import Ph from '../components/Ph.astro';
+import { site, values, departments } from '../data/site';
+---
+
+<BaseLayout title="About" description={`${site.name} — a multidisciplinary arts education and creative enterprise rooted in faith, cultural preservation and professional development.`} transparentHeader>
+  <PageHero
+    eyebrow="About"
+    title="More than an arts academy."
+    lede="A vision-driven institution committed to restoring the arts to purpose, excellence and sustainability."
+    photo="theatre-seats"
+    focus="center 55%"
+  />
+
+  <section class="section">
+    <div class="wrap ab">
+      <div class="ab__text reveal">
+        <p class="eyebrow">Overview</p>
+        <h2 class="display display--m">Education, performance, production and enterprise — deliberately joined up.</h2>
+        <p class="lede">
+          Fanatic Arts provides structured arts training for youth and adults through
+          individual and group programmes across music, dance, drama, visual arts,
+          technical production and creative media.
+        </p>
+        <p class="ab__p">
+          Beyond education, the organisation integrates performance, production, visual
+          services and lifestyle apparel — a holistic creative ecosystem that preserves
+          artistic heritage while generating sustainable economic opportunity. It is
+          rooted in faith, cultural preservation and professional development, and it
+          operates as both an educational institution and a scalable creative business.
+        </p>
+      </div>
+      <div class="ab__media reveal" style="--reveal-delay:120ms">
+        <span class="media media--zoom">
+          <Ph name="prog-adult" sizes="(min-width: 62rem) 44vw, 92vw" widths={[520, 760, 1050, 1400]} />
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section on-dark">
+    <div class="wrap vm2">
+      <div class="reveal">
+        <p class="eyebrow">Vision</p>
+        <p class="vm2__q display display--m">{site.vision}</p>
+      </div>
+      <div class="reveal" style="--reveal-delay:110ms">
+        <p class="eyebrow">Mission</p>
+        <p class="vm2__q display display--m">{site.mission}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <SectionHead eyebrow="Core values" title="What we hold to." class="reveal" />
+      <ul class="vals">
+        {values.map((v, i) => (
+          <li class="reveal" style={`--reveal-delay:${(i % 3) * 90}ms`}>
+            <span class="vals__n">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{v.title}</h3>
+            <p>{v.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section founder">
+    <div class="wrap founder__grid">
+      <div class="founder__media reveal">
+        <span class="media media--zoom">
+          <Ph name="piano-dark" alt="" sizes="(min-width: 62rem) 40vw, 92vw" widths={[480, 700, 950, 1300]} />
+        </span>
+      </div>
+      <div class="founder__text reveal" style="--reveal-delay:110ms">
+        <p class="eyebrow">Founder &amp; leadership</p>
+        <h2 class="display display--m">{site.founder.name}</h2>
+        <p class="founder__role">{site.founder.role}</p>
+        <p class="lede">
+          Fanatic Arts was founded from a deep-rooted spiritual calling and a lifelong
+          commitment to the arts.
+        </p>
+        <p class="ab__p">
+          The vision began in {site.founded}, long before the organisation was formally
+          structured. It evolved through several developmental stages — Fanatic
+          Reproduction, Fanatic Productions, and ultimately Fanatic Arts — each
+          reflecting increased clarity, scope and alignment with its founding mandate.
+        </p>
+        <p class="ab__p">
+          As Founder and Director, {site.founder.name} provides visionary leadership,
+          strategic direction and spiritual oversight. That leadership philosophy is
+          anchored in faith-based decision-making, artistic integrity, long-term
+          sustainability, and mentorship aimed at generational impact.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section on-dark">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="Structure"
+        title="Four divisions, one mandate."
+        lede="Each division stands on its own and feeds the others — teaching supplies the performers, production supplies the platform, and the work gets documented and worn."
+        class="reveal"
+      />
+      <ol class="depts">
+        {departments.map((d, i) => (
+          <li class="reveal" style={`--reveal-delay:${(i % 2) * 100}ms`}>
+            <span class="depts__n">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3 class="display display--s">{d.title}</h3>
+              <p class="depts__note">{d.note}</p>
+              <p class="depts__body">{d.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap impact">
+      <SectionHead eyebrow="Social & cultural impact" title="What this is actually for." class="reveal" />
+      <ul class="impact__list reveal">
+        <li>Preservation of artistic and cultural heritage</li>
+        <li>Youth empowerment and skills development</li>
+        <li>Job creation within the creative industries</li>
+        <li>Faith-based influence in arts and culture</li>
+        <li>Long-term generational legacy</li>
+      </ul>
+    </div>
+  </section>
+
+  <CTABanner
+    photo="stage-warm"
+    title="An investment in creativity, faith and future generations."
+    body="Partner with Fanatic Arts, enrol a learner, or bring the programme to your school or church."
+    primary={{ label: 'Get in touch', href: '/contact/' }}
+    secondary={{ label: 'See programmes', href: '/programmes/' }}
+  />
+</BaseLayout>
+
+<style>
+  .ab { display: grid; gap: clamp(2.5rem, 6vw, 4.5rem); align-items: center; }
+  @media (min-width: 62rem) { .ab { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); } }
+  .ab__text { display: grid; gap: clamp(0.9rem, 1.8vw, 1.4rem); }
+  .ab__p { color: var(--muted); max-width: 58ch; }
+  .ab__media .media { aspect-ratio: 4 / 5; }
+  .ab__media :global(img) { width: 100%; height: 100%; object-fit: cover; }
+
+  .vm2 { display: grid; gap: clamp(2rem, 5vw, 4rem); }
+  @media (min-width: 56rem) { .vm2 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+  .vm2 > div { display: grid; gap: 1.1rem; align-content: start; }
+  .vm2__q { max-width: 20ch; color: var(--gold-200); }
+
+  .vals {
+    list-style: none;
+    margin: clamp(2.5rem, 5vw, 4rem) 0 0;
+    padding: 0;
+    display: grid;
+    gap: clamp(1.75rem, 3.5vw, 3rem);
+    grid-template-columns: minmax(0, 1fr);
+  }
+  @media (min-width: 40rem) { .vals { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 62rem) { .vals { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .vals li { padding-top: 1.25rem; border-top: 1px solid var(--rule); }
+  .vals__n { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 0.7rem; }
+  .vals h3 { font-family: var(--font-sans); font-size: var(--step-0); font-weight: 600; letter-spacing: 0; line-height: 1.3; margin-bottom: 0.35rem; }
+  .vals p { font-size: var(--step--1); color: var(--muted); }
+
+  .founder__grid { display: grid; gap: clamp(2.5rem, 6vw, 4.5rem); align-items: center; }
+  @media (min-width: 62rem) { .founder__grid { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); } }
+  .founder__media .media { aspect-ratio: 4 / 5; }
+  .founder__media :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .founder__text { display: grid; gap: clamp(0.8rem, 1.6vw, 1.2rem); }
+  .founder__role { font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-600); margin-top: -0.4rem; }
+
+  .depts { list-style: none; margin: clamp(2.5rem, 5vw, 4rem) 0 0; padding: 0; display: grid; gap: 0; }
+  .depts li {
+    display: grid;
+    gap: 0.75rem clamp(1.5rem, 4vw, 4rem);
+    padding-block: clamp(1.75rem, 3.5vw, 2.75rem);
+    border-top: 1px solid var(--rule);
+  }
+  @media (min-width: 48rem) { .depts li { grid-template-columns: 4rem minmax(0, 1fr); } }
+  .depts__n { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; color: var(--gold-300); padding-top: 0.55rem; }
+  .depts__note { font-size: var(--step--1); letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-300); margin: 0.5rem 0 0.7rem; }
+  .depts__body { color: var(--muted); max-width: 62ch; }
+
+  .impact__list {
+    list-style: none;
+    margin: clamp(2rem, 4vw, 3rem) 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+    max-width: 46rem;
+  }
+  .impact__list li {
+    padding-block: 1.1rem;
+    border-top: 1px solid var(--rule);
+    font-size: var(--step-1);
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+</style>

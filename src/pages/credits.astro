@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { allPhotos, photoLicense } from '../lib/photos';
+import { site } from '../data/site';
+
+const photos = allPhotos().sort((a, b) => a.key.localeCompare(b.key));
+---
+
+<BaseLayout title="Image credits" description="Photography licensing and attribution for the Fanatic Arts website.">
+  <section class="section cred">
+    <div class="wrap">
+      <p class="eyebrow">Photography</p>
+      <h1 class="display display--m">Image credits &amp; licensing</h1>
+
+      <div class="cred__intro">
+        <p>
+          The photography currently used across this site is <strong>licensed placeholder
+          work</strong>. It illustrates the disciplines taught at {site.name} and does
+          <strong>not</strong> depict {site.name} learners, staff, facilities or productions.
+        </p>
+        <p>{photoLicense}</p>
+        <p class="cred__swap">
+          <strong>Replacing these images:</strong> drop an authentic photograph at
+          <code>src/assets/photos/&lt;key&gt;.jpg</code> using the key in the table below, then
+          update that entry's credit and alt text in <code>src/data/photos.json</code>. Nothing
+          else needs to change — every page reads from that manifest.
+        </p>
+      </div>
+
+      <div class="cred__tablewrap">
+        <table class="cred__table">
+          <caption class="visually-hidden">Every photograph on this site, with its key, photographer and source</caption>
+          <thead>
+            <tr>
+              <th scope="col">Key</th>
+              <th scope="col">Photographer</th>
+              <th scope="col">Description</th>
+              <th scope="col">Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            {photos.map((p) => (
+              <tr>
+                <td><code>{p.key}</code></td>
+                <td><a href={p.authorUrl} rel="noopener nofollow">{p.by}</a></td>
+                <td>{p.alt}</td>
+                <td><a href={p.sourceUrl} rel="noopener nofollow">Unsplash</a></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="cred__count">{photos.length} images. Licence: <a href="https://unsplash.com/license" rel="noopener">Unsplash License</a>.</p>
+      <p><a class="btn btn--ghost" href="/">Back to the site <span class="arw" aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .cred { padding-top: clamp(3rem, 8vw, 6rem); }
+  .cred__intro { margin-top: clamp(1.5rem, 3vw, 2.25rem); display: grid; gap: 1.1rem; max-width: 68ch; color: var(--muted); }
+  .cred__intro strong { color: var(--fg); }
+  .cred__swap { padding: 1.25rem; border-left: 3px solid var(--gold); background: var(--paper-200); }
+  code { font-size: 0.9em; background: color-mix(in srgb, var(--ink) 7%, transparent); padding: 0.1em 0.4em; }
+
+  .cred__tablewrap { margin-top: clamp(2rem, 4vw, 3rem); overflow-x: auto; }
+  .cred__table { width: 100%; border-collapse: collapse; font-size: var(--step--1); min-width: 44rem; }
+  .cred__table th, .cred__table td { text-align: left; padding: 0.85rem 1rem 0.85rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .cred__table th { letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-600); font-weight: 600; }
+  .cred__table td:nth-child(3) { color: var(--muted); }
+  .cred__count { margin-top: 1.5rem; font-size: var(--step--1); color: var(--muted); }
+  .cred .btn { margin-top: 2rem; }
+</style>

@@ -1,0 +1,244 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../data/site';
+import { pricing } from '../data/programmes';
+import { disciplines } from '../data/disciplines';
+
+const endpoint = site.contact.formEndpoint;
+const useNetlify = !endpoint && site.contact.netlifyForms;
+// Only fall back to a mailto when no handler is configured at all.
+const fallbackEmail = !endpoint && !useNetlify ? site.contact.email : undefined;
+---
+
+<BaseLayout
+  title="Contact"
+  description={`Enrol, partner or enquire about lessons at ${site.name}.`}
+  transparentHeader
+>
+  <PageHero
+    eyebrow="Join Fanatic Arts"
+    title="Start the conversation."
+    lede="Enrolment enquiries, school and church partnerships, production bookings and photography services."
+    photo="g-drama-kids"
+    focus="center 40%"
+  />
+
+  <section class="section">
+    <div class="wrap ct">
+      <div class="ct__form reveal">
+        <h2 class="display display--s">Send an enquiry</h2>
+
+        <form
+          class="frm"
+          name="contact"
+          method="post"
+          action={endpoint || (useNetlify ? '/contact/thank-you/' : undefined)}
+          data-netlify={useNetlify ? 'true' : undefined}
+          netlify-honeypot={useNetlify ? 'bot-field' : undefined}
+          data-fallback-email={fallbackEmail}
+          novalidate
+        >
+          {useNetlify && (
+            <>
+              <input type="hidden" name="form-name" value="contact" />
+              <p hidden aria-hidden="true">
+                <label>Leave this field empty<input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+              </p>
+            </>
+          )}
+          <div class="frm__row">
+            <label class="frm__field">
+              <span class="frm__label">Your name <abbr title="required" aria-hidden="true">*</abbr></span>
+              <input type="text" name="name" autocomplete="name" required />
+            </label>
+            <label class="frm__field">
+              <span class="frm__label">Email <abbr title="required" aria-hidden="true">*</abbr></span>
+              <input type="email" name="email" autocomplete="email" required />
+            </label>
+          </div>
+
+          <div class="frm__row">
+            <label class="frm__field">
+              <span class="frm__label">Phone</span>
+              <input type="tel" name="phone" autocomplete="tel" />
+            </label>
+            <label class="frm__field">
+              <span class="frm__label">Interested in</span>
+              <select name="discipline">
+                <option value="">Not sure yet</option>
+                {disciplines.map((d) => <option value={d.name}>{d.name}</option>)}
+                <option value="School or church partnership">School or church partnership</option>
+                <option value="Production or photography booking">Production or photography booking</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="frm__field">
+            <span class="frm__label">Who is the training for?</span>
+            <select name="learner">
+              <option value="">Please choose</option>
+              <option value="A child (Grade 000–7)">A child (Grade 000 – Grade 7)</option>
+              <option value="A high-school learner (Grade 8–12)">A high-school learner (Grade 8 – Grade 12)</option>
+              <option value="An adult / post-school learner">An adult / post-school learner</option>
+              <option value="A group or organisation">A group or organisation</option>
+            </select>
+          </label>
+
+          <label class="frm__field">
+            <span class="frm__label">Message <abbr title="required" aria-hidden="true">*</abbr></span>
+            <textarea name="message" rows="5" required placeholder="Tell us where you are starting from."></textarea>
+          </label>
+
+          <p class="frm__error" data-form-error role="alert" hidden></p>
+
+          <button class="btn btn--gold" type="submit">
+            Send enquiry <span class="arw" aria-hidden="true">→</span>
+          </button>
+
+          <p class="frm__note">
+            Prefer email? Write to <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>.
+          </p>
+        </form>
+      </div>
+
+      <aside class="ct__aside">
+        <div class="ct__block reveal">
+          <h2 class="ct__h">Get in touch</h2>
+          <ul class="ct__list">
+            <li><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li>
+            {site.contact.phone && <li><a href={`tel:${site.contact.phone.replace(/\s/g, '')}`}>{site.contact.phone}</a></li>}
+            <li>{site.contact.location}</li>
+          </ul>
+        </div>
+
+        <div class="ct__block reveal" style="--reveal-delay:100ms">
+          <h2 class="ct__h">Lesson rates</h2>
+          {pricing.tiers.map((t) => (
+            <div class="ct__tier">
+              <p class="ct__tier-h">{t.title} <span>({t.unit})</span></p>
+              <dl>
+                {t.rows.map((r) => (
+                  <div><dt>{r.label}</dt><dd>{r.price}</dd></div>
+                ))}
+              </dl>
+            </div>
+          ))}
+          <p class="ct__fine">{pricing.note}</p>
+        </div>
+
+        <div class="ct__block reveal" style="--reveal-delay:200ms">
+          <h2 class="ct__h">Partnerships</h2>
+          <p class="ct__fine">
+            Fanatic Arts works with schools requiring extracurricular or enrichment
+            programmes, churches and faith-based organisations, and community institutions.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .ct { display: grid; gap: clamp(2.5rem, 6vw, 5rem); align-items: start; }
+  @media (min-width: 62rem) { .ct { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); } }
+
+  .frm { display: grid; gap: clamp(1rem, 2vw, 1.4rem); margin-top: clamp(1.5rem, 3vw, 2.25rem); }
+  .frm__row { display: grid; gap: inherit; }
+  @media (min-width: 40rem) { .frm__row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  .frm__field { display: grid; gap: 0.45rem; }
+  .frm__label {
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .frm__label abbr { color: var(--gold-600); text-decoration: none; }
+
+  .frm input, .frm select, .frm textarea {
+    width: 100%;
+    padding: 0.85em 1em;
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 0;
+    font-size: var(--step-0);
+    transition: border-color 0.3s var(--ease);
+  }
+  .frm input:hover, .frm select:hover, .frm textarea:hover { border-color: color-mix(in srgb, var(--ink) 34%, transparent); }
+  .frm input:focus, .frm select:focus, .frm textarea:focus { border-color: var(--gold); }
+  .frm textarea { resize: vertical; min-height: 8rem; }
+  .frm select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%), linear-gradient(135deg, var(--gold) 50%, transparent 50%); background-position: calc(100% - 1.15rem) 55%, calc(100% - 0.75rem) 55%; background-size: 0.4rem 0.4rem; background-repeat: no-repeat; padding-right: 2.5rem; }
+  .frm :global(input[aria-invalid='true']), .frm :global(textarea[aria-invalid='true']) { border-color: #B3261E; }
+
+  .frm button { justify-self: start; margin-top: 0.5rem; }
+  .frm__note { font-size: var(--step--1); color: var(--muted); }
+  .frm__error { font-size: var(--step--1); color: #B3261E; }
+  .frm__error[hidden] { display: none; }
+
+  .ct__aside { display: grid; gap: clamp(1.75rem, 3.5vw, 2.75rem); }
+  .ct__block { padding-top: 1.4rem; border-top: 1px solid var(--rule); }
+  .ct__h {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-600);
+    margin-bottom: 1rem;
+  }
+  .ct__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+  .ct__tier + .ct__tier { margin-top: 1.25rem; }
+  .ct__tier-h { font-weight: 600; }
+  .ct__tier-h span { font-weight: 400; color: var(--muted); }
+  .ct__tier dl { margin: 0.6rem 0 0; }
+  .ct__tier dl > div { display: flex; justify-content: space-between; gap: 1rem; padding-block: 0.45rem; border-top: 1px solid var(--rule); }
+  .ct__tier dt { color: var(--muted); font-size: var(--step--1); }
+  .ct__tier dd { margin: 0; font-weight: 600; }
+  .ct__fine { margin-top: 1rem; font-size: var(--step--1); color: var(--muted); }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('.frm');
+  const errorBox = document.querySelector<HTMLElement>('[data-form-error]');
+
+  if (form && errorBox) {
+    const fallback = form.dataset.fallbackEmail;
+
+    const showError = (msg: string) => {
+      errorBox.textContent = msg;
+      errorBox.hidden = false;
+    };
+
+    form.addEventListener('submit', (e) => {
+      errorBox.hidden = true;
+      form.querySelectorAll('[aria-invalid]').forEach((el) => el.removeAttribute('aria-invalid'));
+
+      const invalid = [...form.elements].filter(
+        (el): el is HTMLInputElement | HTMLTextAreaElement =>
+          (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) && !el.checkValidity()
+      );
+
+      if (invalid.length) {
+        e.preventDefault();
+        invalid.forEach((el) => el.setAttribute('aria-invalid', 'true'));
+        showError('Please complete the highlighted fields before sending.');
+        invalid[0].focus();
+        return;
+      }
+
+      // No form handler configured yet: compose an email instead of failing silently.
+      if (fallback) {
+        e.preventDefault();
+        const data = new FormData(form);
+        const body = [...data.entries()]
+          .filter(([, v]) => String(v).trim() !== '')
+          .map(([k, v]) => `${k[0].toUpperCase() + k.slice(1)}: ${v}`)
+          .join('\n');
+        const subject = `Enquiry from ${data.get('name') || 'the website'}`;
+        window.location.href = `mailto:${fallback}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      }
+    });
+  }
+</script>

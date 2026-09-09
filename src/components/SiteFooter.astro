@@ -1,0 +1,107 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo-fanatic-arts.png';
+import { site, nav, departments } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="ftr on-dark">
+  <div class="wrap">
+    <div class="ftr__top">
+      <div class="ftr__brand">
+        <Image class="ftr__logo" src={logo} alt={`${site.name} logo`} width={340} densities={[1, 2]} loading="lazy" />
+        <p class="ftr__vision">{site.vision}</p>
+      </div>
+
+      <div class="ftr__cols">
+        <div>
+          <h2 class="ftr__h">Explore</h2>
+          <ul>
+            {nav.map((i) => <li><a href={i.href}>{i.label}</a></li>)}
+          </ul>
+        </div>
+        <div>
+          <h2 class="ftr__h">Divisions</h2>
+          <ul>
+            {departments.map((d) => <li><span>{d.title}</span></li>)}
+          </ul>
+        </div>
+        <div>
+          <h2 class="ftr__h">Get in touch</h2>
+          <ul>
+            <li><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li>
+            <li><span>{site.contact.location}</span></li>
+          </ul>
+          <a class="btn btn--gold ftr__cta" href="/contact/">
+            Join Fanatic Arts <span class="arw" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule" />
+
+    <div class="ftr__base">
+      <p>© {year} {site.name}. All rights reserved.</p>
+      <p class="ftr__credit">
+        Placeholder photography licensed via <a href="https://unsplash.com/license" rel="noopener">Unsplash</a>.
+        <a href="/credits/">Full image credits</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .ftr { padding-block: clamp(3.5rem, 8vw, 7rem) 2.5rem; }
+  .ftr__top {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    grid-template-columns: 1fr;
+    padding-block-end: clamp(2.5rem, 5vw, 4rem);
+  }
+  @media (min-width: 56rem) {
+    .ftr__top { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); }
+  }
+  .ftr__logo { width: clamp(150px, 16vw, 200px); height: auto; filter: brightness(0) invert(1); }
+  .ftr__vision {
+    margin-top: 1.75rem;
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 16ch;
+    color: var(--gold-200);
+  }
+
+  .ftr__cols {
+    display: grid;
+    gap: clamp(1.75rem, 4vw, 3rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  }
+  .ftr__h {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-300);
+    margin-bottom: 1.1rem;
+  }
+  .ftr__cols ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+  .ftr__cols a { text-decoration: none; color: var(--muted); transition: color 0.3s var(--ease); }
+  .ftr__cols a:hover { color: var(--paper); }
+  .ftr__cols span { color: var(--muted); }
+  .ftr__cta { margin-top: 1.75rem; white-space: nowrap; justify-self: start; }
+
+  .ftr__base {
+    padding-block-start: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 2rem;
+    justify-content: space-between;
+    font-size: var(--step--1);
+    color: var(--muted);
+  }
+  .ftr__credit a { color: var(--muted); }
+  .ftr__credit a:hover { color: var(--paper); }
+</style>

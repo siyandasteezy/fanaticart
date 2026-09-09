@@ -1,0 +1,108 @@
+---
+/**
+ * The six disciplines as a full-bleed band of labelled panels.
+ * Used mid-page on the homepage, and as the hero band on /disciplines.
+ */
+import Ph from './Ph.astro';
+import { disciplines } from '../data/disciplines';
+
+interface Props {
+  /** Stretch to fill a parent grid row (hero use) instead of its own height. */
+  fill?: boolean;
+  /** Eager-load the panels when they are above the fold. */
+  priority?: boolean;
+  linkBase?: string;
+}
+const { fill = false, priority = false, linkBase = '/disciplines/' } = Astro.props;
+---
+
+<ul class:list={['dp', fill && 'dp--fill']}>
+  {disciplines.map((d) => (
+    <li>
+      <a href={`${linkBase}#${d.slug}`}>
+        <span class="dp__media media media--zoom">
+          <Ph
+            name={d.panelPhoto}
+            alt={`${d.name} at Fanatic Arts`}
+            priority={priority}
+            sizes="(min-width: 62rem) 17vw, (min-width: 48rem) 33vw, 50vw"
+            widths={[240, 360, 520, 760]}
+          />
+        </span>
+        <span class="dp__label">
+          <span class="dp__n">{d.index}</span>
+          <span class="dp__name">{d.name}</span>
+        </span>
+      </a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .dp {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2px;
+  }
+  @media (min-width: 48rem) { .dp { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 62rem) { .dp { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+
+  /* Standalone (mid-page): the band sets its own height. */
+  .dp li { position: relative; min-height: clamp(16rem, 58vw, 24rem); }
+  @media (min-width: 62rem) { .dp li { min-height: clamp(22rem, 34vw, 38rem); } }
+
+  /* Hero use: the parent grid row decides the height. */
+  .dp--fill { min-height: 44svh; }
+  .dp--fill li { min-height: 15rem; }
+  @media (min-width: 62rem) {
+    .dp--fill { min-height: 0; height: 100%; }
+    .dp--fill li { min-height: 0; }
+  }
+
+  .dp a { position: relative; display: block; height: 100%; color: var(--paper); text-decoration: none; }
+
+  .dp__media { display: block; height: 100%; }
+  .dp__media :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .dp__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(6 5 4 / 0.9) 0%, rgb(6 5 4 / 0.3) 45%, rgb(6 5 4 / 0.1) 75%);
+    transition: opacity 0.6s var(--ease);
+  }
+  .dp a:hover .dp__media::after { opacity: 0.75; }
+
+  .dp__label {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 1;
+    display: grid;
+    gap: 0.3rem;
+    padding: clamp(0.9rem, 1.6vw, 1.4rem);
+  }
+  .dp__n { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em; color: var(--gold-300); }
+  .dp__name {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .dp a::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s var(--ease);
+    z-index: 2;
+  }
+  .dp a:hover::after, .dp a:focus-visible::after { transform: scaleX(1); }
+</style>

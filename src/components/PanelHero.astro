@@ -1,0 +1,80 @@
+---
+/** Statement block above the full-bleed band of six disciplines. */
+import DisciplinePanels from './DisciplinePanels.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lede: string;
+  primary?: { label: string; href: string };
+  secondary?: { label: string; href: string };
+  linkBase?: string;
+}
+const {
+  eyebrow,
+  title,
+  lede,
+  primary = { label: 'Join Fanatic Arts', href: '/contact/' },
+  secondary,
+  linkBase,
+} = Astro.props;
+---
+
+<section class="ph2" aria-labelledby="page-h">
+  <div class="ph2__top wrap">
+    <div>
+      <p class="ph2__eyebrow">{eyebrow}</p>
+      <h1 class="display ph2__h" id="page-h" set:html={title} />
+    </div>
+    <div class="ph2__aside">
+      <p class="ph2__lede">{lede}</p>
+      <div class="ph2__actions">
+        <a class="btn btn--gold" href={primary.href}>{primary.label} <span class="arw" aria-hidden="true">→</span></a>
+        {secondary && <a class="btn btn--ghost" href={secondary.href}>{secondary.label}</a>}
+      </div>
+    </div>
+  </div>
+
+  <DisciplinePanels fill priority linkBase={linkBase} />
+</section>
+
+<style>
+  .ph2 {
+    background: var(--ink);
+    color: var(--paper);
+    min-height: 100svh;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    align-content: start;
+  }
+
+  .ph2__top {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    padding-block: clamp(6.5rem, 14vh, 9rem) clamp(1.5rem, 4vh, 2.75rem);
+    align-items: end;
+  }
+  @media (min-width: 62rem) {
+    .ph2__top { grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); }
+  }
+
+  .ph2__eyebrow {
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-300);
+    margin-bottom: clamp(0.85rem, 1.6vw, 1.35rem);
+  }
+  /* Held to two lines so the panel band keeps its height above the fold. */
+  .ph2__h { font-size: clamp(2rem, 5vw, 4.75rem); }
+  .ph2__h :global(em) { font-style: normal; color: var(--gold-300); }
+
+  .ph2__lede {
+    font-size: var(--step-0);
+    line-height: 1.55;
+    color: color-mix(in srgb, var(--paper) 72%, transparent);
+    max-width: 40ch;
+  }
+  .ph2__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
+</style>

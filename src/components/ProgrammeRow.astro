@@ -1,0 +1,64 @@
+---
+import Ph from './Ph.astro';
+import type { Programme } from '../data/programmes';
+
+interface Props { programme: Programme; flip?: boolean }
+const { programme: p, flip = false } = Astro.props;
+---
+
+<article class:list={['pr', flip && 'pr--flip', 'reveal']} id={p.slug}>
+  <div class="pr__media media media--zoom">
+    <Ph
+      name={p.photo}
+      alt={`${p.eyebrow} programme at Fanatic Arts`}
+      sizes="(min-width: 62rem) 52vw, 100vw"
+      widths={[560, 820, 1100, 1500, 1800]}
+    />
+  </div>
+
+  <div class="pr__body">
+    <p class="eyebrow">{p.eyebrow}</p>
+    <h3 class="display display--m">{p.title}</h3>
+    <p class="lede">{p.lede}</p>
+    <ul class="pr__points">
+      {p.points.map((pt) => <li>{pt}</li>)}
+    </ul>
+    <a class="btn btn--ghost" href={p.cta.href}>{p.cta.label} <span class="arw" aria-hidden="true">→</span></a>
+  </div>
+</article>
+
+<style>
+  .pr {
+    display: grid;
+    gap: clamp(1.75rem, 4vw, 4rem);
+    align-items: center;
+  }
+  @media (min-width: 62rem) {
+    .pr { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+    .pr--flip .pr__media { order: 2; }
+  }
+
+  .pr__media { aspect-ratio: 5 / 4; }
+  @media (min-width: 62rem) { .pr__media { aspect-ratio: 4 / 3; } }
+  .pr__media :global(img) { width: 100%; height: 100%; object-fit: cover; }
+
+  .pr__body { display: grid; gap: clamp(0.85rem, 1.6vw, 1.35rem); align-content: start; }
+  .pr__body .btn { justify-self: start; margin-top: 0.5rem; }
+
+  .pr__points { display: grid; gap: 0.7rem; margin: 0.25rem 0 0; padding: 0; list-style: none; }
+  .pr__points li {
+    position: relative;
+    padding-left: 1.6rem;
+    font-size: var(--step--1);
+    color: var(--muted);
+  }
+  .pr__points li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 0.7rem;
+    height: 1px;
+    background: var(--gold);
+  }
+</style>

@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Ph from '../../components/Ph.astro';
+import { site } from '../../data/site';
+---
+
+<BaseLayout
+  title="Thank you"
+  description="Your enquiry has been received."
+  transparentHeader
+>
+  <section class="ty">
+    <div class="ty__media media scrim">
+      <Ph name="theatre-seats" alt="" priority sizes="100vw" widths={[640, 960, 1400, 1920]} />
+    </div>
+    <div class="wrap ty__body">
+      <p class="ty__eyebrow">Enquiry received</p>
+      <h1 class="display display--l">Thank you — we will be in touch.</h1>
+      <p class="ty__lede">
+        Someone from Fanatic Arts will reply to your enquiry shortly. If it is urgent,
+        write to <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>.
+      </p>
+      <div class="ty__actions">
+        <a class="btn btn--gold" href="/">Back to home <span class="arw" aria-hidden="true">→</span></a>
+        <a class="btn btn--ghost" href="/disciplines/">Browse disciplines</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .ty {
+    position: relative;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    min-height: 100svh;
+    color: var(--paper);
+    isolation: isolate;
+    overflow: clip;
+  }
+  .ty__media { position: absolute; inset: 0; z-index: -1; }
+  .ty__media :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .ty__body { display: grid; justify-items: center; gap: clamp(1rem, 2vw, 1.5rem); }
+  .ty__eyebrow { font-size: var(--step--1); letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-200); }
+  .ty h1 { max-width: 18ch; }
+  .ty__lede { color: color-mix(in srgb, var(--paper) 80%, transparent); max-width: 46ch; }
+  .ty__actions { display: flex; flex-wrap: wrap; gap: 0.85rem; justify-content: center; margin-top: 0.5rem; }
+</style>

@@ -1,0 +1,369 @@
+{
+  "license": "Unsplash License (https://unsplash.com/license) — free to use commercially, no permission needed, attribution appreciated. All entries verified as standard Unsplash (NOT Unsplash+ premium) on 2026-09-09.",
+  "photos": [
+    {
+      "key": "hero-performance",
+      "id": "c59paVRR9xU",
+      "file": "photo-1751267638411-17d38b29aaa4",
+      "w": 2800,
+      "by": "Alexey Elfimov",
+      "un": "ikocs",
+      "alt": "Musicians performing together on a stage washed in warm golden light",
+      "crop": {
+        "top": 0.135
+      },
+      "note": "Top 13.5% cropped to remove festival signage from the venue."
+    },
+    {
+      "key": "music",
+      "id": "ImYmMnPffDI",
+      "file": "photo-1610414301713-b729d02f0425",
+      "w": 1800,
+      "by": "Memento Media",
+      "un": "heymemento",
+      "alt": "An ensemble of musicians playing instruments together"
+    },
+    {
+      "key": "dance",
+      "id": "E3ABJKHr1fk",
+      "file": "photo-1560172859-9db9c0b99820",
+      "w": 1800,
+      "by": "Joost Crop",
+      "un": "smallcamerabigpictures",
+      "alt": "A group of dancers performing together on stage"
+    },
+    {
+      "key": "drama",
+      "id": "dbXvp5pcwec",
+      "file": "photo-1786455641819-afea93f548c8",
+      "w": 1800,
+      "by": "Anita Jankovic",
+      "un": "dslr_newb",
+      "alt": "Four performers in black rehearsing a scene on a stage set with wooden chairs"
+    },
+    {
+      "key": "visual-arts",
+      "id": "IIisONUL2d8",
+      "file": "photo-1752649937266-1900d9e176c3",
+      "w": 1800,
+      "by": "Vitaly Gariev",
+      "un": "silverkblack",
+      "alt": "An artist working at an easel in a painting studio"
+    },
+    {
+      "key": "technical",
+      "id": "KGyzk-EvTwQ",
+      "file": "photo-1551712744-1963ba88d303",
+      "w": 1800,
+      "by": "Bee Balogun",
+      "un": "bee_balogun",
+      "alt": "A sound engineer working at a mixing console"
+    },
+    {
+      "key": "media",
+      "id": "xKfS7Hll0Ck",
+      "file": "photo-1632187981988-40f3cbaeef5e",
+      "w": 1800,
+      "by": "Jakob Owens",
+      "un": "jakobowens1",
+      "alt": "A film crew setting up a camera rig on location"
+    },
+    {
+      "key": "journey-discover",
+      "id": "H-O7gUaKMow",
+      "file": "photo-1757085242652-f8cd4d3de889",
+      "w": 1400,
+      "by": "ANYA RICHTER",
+      "un": "anya_richter",
+      "alt": "People painting side by side at a long table in an art class"
+    },
+    {
+      "key": "journey-learn",
+      "id": "aOLDCqOEFDo",
+      "file": "photo-1696522732406-065ef560da8c",
+      "w": 1400,
+      "by": "Andrey K",
+      "un": "anamnesis33",
+      "alt": "A teacher guiding a young learner at the piano"
+    },
+    {
+      "key": "journey-practice",
+      "id": "2x8o7ZdoB70",
+      "file": "photo-1758671916868-b853bc18d031",
+      "w": 1400,
+      "by": "Kazuo ota",
+      "un": "kazuo513",
+      "alt": "Dancers working through exercises at a studio barre"
+    },
+    {
+      "key": "journey-create",
+      "id": "xEy9QNUCdRI",
+      "file": "photo-1468322638156-074863f9362e",
+      "w": 1400,
+      "by": "Quino Al",
+      "un": "quinoal",
+      "alt": "Clay-covered hands shaping a vessel on a spinning pottery wheel"
+    },
+    {
+      "key": "journey-collaborate",
+      "id": "YFJecGLgo24",
+      "file": "photo-1731703809282-44225fb895a7",
+      "w": 1400,
+      "by": "Howard Wang",
+      "un": "howardwhs",
+      "alt": "A company sitting together on the floor talking through a piece of work"
+    },
+    {
+      "key": "journey-perform",
+      "id": "TmvSImvV7vA",
+      "file": "photo-1576724196706-3f23f51ea351",
+      "w": 1400,
+      "by": "Yiran Ding",
+      "un": "yiranding",
+      "alt": "An audience watching a performance in a full theatre"
+    },
+    {
+      "key": "journey-grow",
+      "id": "ZtVLotTFjhs",
+      "file": "photo-1707944494732-e706d511456d",
+      "w": 1200,
+      "by": "Nice M Nshuti",
+      "un": "nietzsche99",
+      "alt": "A saxophonist playing, photographed against a dark background"
+    },
+    {
+      "key": "prog-youth",
+      "id": "ljfPU1-Ygxw",
+      "file": "photo-1780751987564-79489283d67b",
+      "w": 1800,
+      "by": "Anna Khromova",
+      "un": "anna_khromova",
+      "alt": "Children concentrating on painting ceramic figures in an art class"
+    },
+    {
+      "key": "prog-adult",
+      "id": "SfNtzPs3zTY",
+      "file": "photo-1661925501942-b0c9a9eab08e",
+      "w": 1800,
+      "by": "BandLab",
+      "un": "bandlab_music",
+      "alt": "Two adults playing guitars together in a rehearsal space"
+    },
+    {
+      "key": "prog-institutions",
+      "id": "QSa-uv4WJ0k",
+      "file": "photo-1507692049790-de58290a4334",
+      "w": 1800,
+      "by": "Edward Cisneros",
+      "un": "everythingcaptured",
+      "alt": "A band leading a congregation from a stage"
+    },
+    {
+      "key": "backstage",
+      "id": "jLrm95mg-eg",
+      "file": "photo-1757346143784-b794d642dc5a",
+      "w": 2200,
+      "by": "Kazuo ota",
+      "un": "kazuo513",
+      "alt": "Stage crew working behind the scenes on a dimly lit stage"
+    },
+    {
+      "key": "lighting-rig",
+      "id": "dadr6UMaAoA",
+      "file": "photo-1727097467318-35fe841b0009",
+      "w": 1800,
+      "by": "Ambitious Studio* | Rick Barrett",
+      "un": "weareambitious",
+      "alt": "A rig of stage lights burning against darkness"
+    },
+    {
+      "key": "stage-warm",
+      "id": "GKx96wY_MoA",
+      "file": "photo-1579539760267-b2e78d9d735e",
+      "w": 2200,
+      "by": "Hulki Okan Tabak",
+      "un": "hulkiokantabak",
+      "alt": "A dancer mid-movement on stage under warm amber light"
+    },
+    {
+      "key": "piano-dark",
+      "id": "ceB7mgfOgTU",
+      "file": "photo-1690742319740-9472091ed48f",
+      "w": 1800,
+      "by": "Xingchen Yan",
+      "un": "xingchenyan",
+      "alt": "Hands at a piano keyboard in a darkened room"
+    },
+    {
+      "key": "theatre-seats",
+      "id": "ebsrin6WqxQ",
+      "file": "photo-1615414047026-802692414b79",
+      "w": 2200,
+      "by": "Liam McGarry",
+      "un": "liammcgarry",
+      "alt": "Empty theatre seating facing a closed gold curtain"
+    },
+    {
+      "key": "g-xylophone-boy",
+      "id": "oi6SSAKodAA",
+      "file": "photo-1774624345025-f73936b94dbf",
+      "w": 1400,
+      "by": "David Vilches",
+      "un": "davidvilches",
+      "alt": "A young boy playing a xylophone outdoors"
+    },
+    {
+      "key": "g-traditional-stage",
+      "id": "9s1zMTevjm0",
+      "file": "photo-1764670274687-ab62458d6306",
+      "w": 1400,
+      "by": "Sitraka Mamy Tantely Andriamialijaona",
+      "un": "sitrakamamytantely12",
+      "alt": "Performers in vivid traditional dress on stage"
+    },
+    {
+      "key": "g-drummers",
+      "id": "ZvlytyUscwE",
+      "file": "photo-1764670085286-55cd79507a72",
+      "w": 1400,
+      "by": "Sitraka Mamy Tantely Andriamialijaona",
+      "un": "sitrakamamytantely12",
+      "alt": "Three drummers in colourful dress playing together"
+    },
+    {
+      "key": "g-ballet-stage",
+      "id": "yAU2bbD5J2w",
+      "file": "photo-1758670331763-b0f3cd7c1a8d",
+      "w": 1400,
+      "by": "Kazuo ota",
+      "un": "kazuo513",
+      "alt": "Dancers performing on stage under spotlights"
+    },
+    {
+      "key": "g-clay",
+      "id": "Tq4YjCa2BSc",
+      "file": "photo-1422246358533-95dcd3d48961",
+      "w": 1400,
+      "by": "Alex Jones",
+      "un": "alexjones",
+      "alt": "A clay-stained hand at work on a piece of pottery"
+    },
+    {
+      "key": "g-paint-child",
+      "id": "5uaZwt3x7nU",
+      "file": "photo-1536221993589-9edbbca2c7fc",
+      "w": 1400,
+      "by": "Anita Jankovic",
+      "un": "dslr_newb",
+      "alt": "A child working with watercolour paints"
+    },
+    {
+      "key": "g-sax-portrait",
+      "id": "MGfDE60G0-M",
+      "file": "photo-1581283869631-baae04233b04",
+      "w": 1200,
+      "by": "Reno Laithienne",
+      "un": "renolaithienne",
+      "alt": "A musician in a white shirt holding a saxophone"
+    },
+    {
+      "key": "g-violin",
+      "id": "stmC7qatI20",
+      "file": "photo-1764973809231-34eea38cae41",
+      "w": 1200,
+      "by": "Karina Syrotiuk",
+      "un": "karinasyrotiuk",
+      "alt": "A player holding a violin close to their face"
+    },
+    {
+      "key": "g-dance-portrait",
+      "id": "LsMxdW1zWEQ",
+      "file": "photo-1547153760-18fc86324498",
+      "w": 1200,
+      "by": "Morgan Petroski",
+      "un": "morganpetroskiphoto",
+      "alt": "A dancer caught mid-phrase on stage"
+    },
+    {
+      "key": "g-camera-studio",
+      "id": "0O0gux4OZX4",
+      "file": "photo-1594394489098-74ac04c0fc2e",
+      "w": 1400,
+      "by": "Jesus Loves Austin",
+      "un": "jesuslovesaustin",
+      "alt": "A production camera recording a live musical performance"
+    },
+    {
+      "key": "g-mixer",
+      "id": "leScCAsHZcw",
+      "file": "photo-1534840641466-b1cdb8fb155e",
+      "w": 1400,
+      "by": "Yomex Owo",
+      "un": "yomex4life",
+      "alt": "Hands riding the faders of an audio mixing desk"
+    },
+    {
+      "key": "g-drama-kids",
+      "id": "lr5fljhNz1g",
+      "file": "photo-1786455285224-4e28aa9ff26f",
+      "w": 1400,
+      "by": "Anita Jankovic",
+      "un": "dslr_newb",
+      "alt": "Four young performers seated together on a stage"
+    },
+    {
+      "key": "g-ukulele",
+      "id": "acxzO9hfA38",
+      "file": "photo-1782110936942-fd84605ebabb",
+      "w": 1200,
+      "by": "atelierbyvineeth",
+      "un": "atelierbyvineeth",
+      "alt": "A young man in a bright shirt playing a ukulele"
+    },
+    {
+      "key": "g-choir",
+      "id": "ZaZcvU_WuF8",
+      "file": "photo-1720186576697-24c1496a07e1",
+      "w": 1400,
+      "by": "Green Liu",
+      "un": "greenliustudio",
+      "alt": "Voices raised together in song inside a church"
+    },
+    {
+      "key": "g-guitar-lesson",
+      "id": "NnQS_twD4Bo",
+      "file": "photo-1636581563713-5ead3fb53a80",
+      "w": 1400,
+      "by": "Michael Starkie",
+      "un": "starkie_pics",
+      "alt": "One player showing another a shape on the guitar"
+    },
+    {
+      "key": "g-dance-group",
+      "id": "TK_WT3dl2tw",
+      "file": "photo-1533106958148-daaeab8b83fe",
+      "w": 1400,
+      "by": "Ahmad Odeh",
+      "un": "aoddeh",
+      "alt": "A group of dancers moving together in an open space"
+    },
+    {
+      "key": "hero-vertical-singer",
+      "id": "sCTuvTHJE4I",
+      "file": "photo-1530189873666-a792be008b5b",
+      "w": 1600,
+      "by": "Keagan Henman",
+      "un": "henmankk",
+      "alt": "A singer performing on stage, lit from behind"
+    },
+    {
+      "key": "hero-vertical-dancer",
+      "id": "vXehyYXPnBs",
+      "file": "photo-1743491954801-132fac5de73a",
+      "w": 1600,
+      "by": "Milana Aernova",
+      "un": "milana_gorobchenko",
+      "alt": "A dancer moving through a phrase on stage"
+    }
+  ]
+}

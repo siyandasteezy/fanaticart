@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PanelHero from '../components/PanelHero.astro';
+import CTABanner from '../components/CTABanner.astro';
+import Ph from '../components/Ph.astro';
+import { disciplines } from '../data/disciplines';
+---
+
+<BaseLayout
+  title="Disciplines"
+  description="Music, dance, drama, visual arts, technical production and creative media — the six disciplines taught at Fanatic Arts."
+  transparentHeader
+>
+  <PanelHero
+    eyebrow="Disciplines"
+    title="Six disciplines.<br /><em>One standard.</em>"
+    lede="Every discipline is taught on its own terms — technique first, then voice, then the stage."
+    primary={{ label: 'Enquire about lessons', href: '/contact/' }}
+    secondary={{ label: 'Programmes', href: '/programmes/' }}
+    linkBase="#"
+  />
+
+  {disciplines.map((d, i) => (
+    <section class="disc" id={d.slug} aria-labelledby={`${d.slug}-h`}>
+      <div class="wrap">
+        <div class:list={['disc__grid', i % 2 === 1 && 'disc__grid--flip']}>
+          <div class="disc__media reveal">
+            <span class="media media--zoom">
+              <Ph
+                name={d.photo}
+                alt={`${d.name} at Fanatic Arts`}
+                sizes="(min-width: 62rem) 48vw, 92vw"
+                widths={[520, 760, 1050, 1400, 1800]}
+              />
+            </span>
+          </div>
+
+          <div class="disc__text reveal" style="--reveal-delay:110ms">
+            <p class="eyebrow">{d.index} — Discipline</p>
+            <h2 class="display display--m" id={`${d.slug}-h`}>{d.name}</h2>
+            <p class="lede">{d.lede}</p>
+
+            <div class="disc__cols">
+              <div>
+                <h3 class="disc__h">What you learn</h3>
+                <ul class="disc__list">{d.learn.map((x) => <li>{x}</li>)}</ul>
+              </div>
+              <div>
+                <h3 class="disc__h">What you leave with</h3>
+                <ul class="disc__list">{d.outcomes.map((x) => <li>{x}</li>)}</ul>
+              </div>
+            </div>
+
+            <a class="btn btn--ghost" href="/contact/">Enquire about {d.name.toLowerCase()} <span class="arw" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <CTABanner
+    photo="journey-perform"
+    title="Pick a discipline. We will start you where you are."
+    body="Private and group lessons, for beginners through to advanced."
+    primary={{ label: 'Enquire about lessons', href: '/contact/' }}
+    secondary={{ label: 'See programmes', href: '/programmes/' }}
+  />
+</BaseLayout>
+
+<style>
+  .disc { padding-block: clamp(3rem, 7vw, 6rem); border-top: 1px solid var(--rule); scroll-margin-top: 6rem; }
+  .disc:first-of-type { border-top: 0; }
+
+  .disc__grid { display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+  @media (min-width: 62rem) {
+    .disc__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .disc__grid--flip .disc__media { order: 2; }
+  }
+  .disc__media .media { aspect-ratio: 4 / 3; position: sticky; top: 6rem; }
+  .disc__media :global(img) { width: 100%; height: 100%; object-fit: cover; }
+
+  .disc__text { display: grid; gap: clamp(0.85rem, 1.6vw, 1.3rem); }
+  .disc__text .btn { justify-self: start; margin-top: 0.75rem; }
+
+  .disc__cols {
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    margin-top: 0.75rem;
+  }
+  @media (min-width: 40rem) { .disc__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  .disc__h {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-600);
+    margin-bottom: 0.9rem;
+  }
+  .disc__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.65rem; }
+  .disc__list li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: var(--step--1);
+    color: var(--muted);
+  }
+  .disc__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 0.65rem;
+    height: 1px;
+    background: var(--gold);
+  }
+</style>

@@ -1,0 +1,26 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+  align?: 'start' | 'center';
+  level?: 2 | 3;
+  size?: 'm' | 's' | 'l';
+  class?: string;
+}
+const { eyebrow, title, lede, align = 'start', level = 2, size = 'm', class: className } = Astro.props;
+const Tag = `h${level}` as 'h2' | 'h3';
+---
+
+<div class:list={['sh', `sh--${align}`, className]}>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <Tag class:list={['display', `display--${size}`]}>{title}</Tag>
+  {lede && <p class="lede">{lede}</p>}
+</div>
+
+<style>
+  .sh { display: grid; gap: clamp(0.9rem, 1.6vw, 1.5rem); }
+  .sh--center { justify-items: center; text-align: center; }
+  .sh--center :global(.lede) { max-width: 52ch; }
+  .sh--center :global(.eyebrow)::before { display: none; }
+</style>

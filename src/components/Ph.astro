@@ -1,0 +1,49 @@
+---
+/**
+ * The single place photography enters the page.
+ * Looks a photo up by manifest key, emits responsive AVIF/WebP via astro:assets,
+ * and keeps alt text with the image rather than at the call site.
+ */
+import { Image } from 'astro:assets';
+import { photo } from '../lib/photos';
+
+interface Props {
+  /** Key from src/data/photos.json */
+  name: string;
+  /** Overrides the manifest alt. Pass "" for purely decorative use. */
+  alt?: string;
+  sizes?: string;
+  widths?: number[];
+  /** Above-the-fold image: eager + high fetch priority. */
+  priority?: boolean;
+  class?: string;
+  style?: string;
+}
+
+const {
+  name,
+  alt,
+  sizes = '100vw',
+  widths = [400, 640, 900, 1280, 1800],
+  priority = false,
+  class: className,
+  style,
+} = Astro.props;
+
+const p = photo(name);
+const resolvedAlt = alt ?? p.alt;
+// Never upscale past the source file.
+const safeWidths = [...new Set(widths.filter((w) => w <= p.src.width).concat(Math.min(p.src.width, Math.max(...widths))))].sort((a, b) => a - b);
+---
+
+<Image
+  src={p.src}
+  alt={resolvedAlt}
+  widths={safeWidths}
+  sizes={sizes}
+  loading={priority ? 'eager' : 'lazy'}
+  decoding={priority ? 'sync' : 'async'}
+  fetchpriority={priority ? 'high' : 'auto'}
+  class={className}
+  style={style}
+/>

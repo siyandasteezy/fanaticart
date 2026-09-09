@@ -1,0 +1,58 @@
+---
+import Ph from './Ph.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lede?: string;
+  photo: string;
+  /** Focal point for the background crop, e.g. "center 35%". */
+  focus?: string;
+}
+const { eyebrow, title, lede, photo, focus = 'center 45%' } = Astro.props;
+---
+
+<section class="ph" aria-labelledby="page-h">
+  <div class="ph__media media scrim">
+    <Ph name={photo} alt="" priority sizes="100vw" widths={[640, 960, 1400, 1920, 2200]} style={`object-position:${focus}`} />
+  </div>
+  <div class="wrap ph__body">
+    <p class="ph__eyebrow">{eyebrow}</p>
+    <h1 class="display display--l" id="page-h">{title}</h1>
+    {lede && <p class="ph__lede">{lede}</p>}
+  </div>
+</section>
+
+<style>
+  .ph {
+    position: relative;
+    display: grid;
+    align-items: end;
+    min-height: clamp(24rem, 66svh, 40rem);
+    color: var(--paper);
+    isolation: isolate;
+    overflow: clip;
+  }
+  .ph__media { position: absolute; inset: 0; z-index: -1; }
+  .ph__media :global(img) { width: 100%; height: 100%; object-fit: cover; }
+
+  .ph__body {
+    display: grid;
+    gap: clamp(0.9rem, 1.8vw, 1.5rem);
+    padding-block: clamp(7rem, 16vh, 10rem) clamp(3rem, 8vh, 5rem);
+  }
+  .ph__eyebrow {
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-200);
+  }
+  .ph h1 { max-width: 18ch; }
+  .ph__lede {
+    max-width: 54ch;
+    font-size: var(--step-1);
+    line-height: 1.5;
+    color: color-mix(in srgb, var(--paper) 82%, transparent);
+  }
+</style>

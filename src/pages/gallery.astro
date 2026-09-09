@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+import CTABanner from '../components/CTABanner.astro';
+---
+
+<BaseLayout
+  title="Gallery"
+  description="Creative work across music, dance, drama, visual arts, technical production and creative media."
+  transparentHeader
+>
+  <PageHero
+    eyebrow="Gallery"
+    title="The work, as it happens."
+    lede="Rehearsal rooms, studios, workshops and stages — the ordinary hours that make the performance possible."
+    photo="journey-practice"
+    focus="center 45%"
+  />
+
+  <section class="section">
+    <div class="wrap">
+      <GalleryGrid />
+      <p class="gal__note">
+        The photography on this site is licensed placeholder work from
+        <a href="https://unsplash.com/license" rel="noopener">Unsplash</a>. It illustrates the
+        disciplines taught at Fanatic Arts and does not depict Fanatic Arts learners, staff,
+        facilities or productions. <a href="/credits/">See full image credits.</a>
+      </p>
+    </div>
+  </section>
+
+  <CTABanner
+    photo="stage-warm"
+    title="Your work belongs on this wall."
+    body="Enrol in a programme and start building a body of work worth showing."
+    primary={{ label: 'Enquire about lessons', href: '/contact/' }}
+  />
+</BaseLayout>
+
+<style>
+  .gal__note {
+    margin-top: clamp(2rem, 4vw, 3rem);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-size: var(--step--1);
+    color: var(--muted);
+    max-width: 68ch;
+  }
+</style>

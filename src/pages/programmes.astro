@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import ProgrammeRow from '../components/ProgrammeRow.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { programmes, pricing } from '../data/programmes';
+
+const phases = [
+  { label: 'Foundation & Primary', range: 'Grade 000 – Grade 7', note: 'Play-based, arts-integrated learning. Emotional and creative development, minimal formal testing.' },
+  { label: 'High School', range: 'Grade 8 – Grade 12', note: 'Skill development with purpose. Identity and career exploration, professional discipline.' },
+  { label: 'Tertiary / Academy', range: 'Post-school learners', note: 'Full-scale productions, arts business, teaching qualification and career mentorship.' },
+];
+
+const levels = [
+  { label: 'Level 1', name: 'Beginner', note: 'Exposure to arts and creativity. Basic storytelling, rhythm and movement.' },
+  { label: 'Level 2', name: 'Intermediate', note: 'Structured productions, event participation, early technical skill.' },
+  { label: 'Level 3', name: 'Advanced', note: 'Full productions and directing, studio work, leadership and mentorship.' },
+];
+---
+
+<BaseLayout
+  title="Programmes"
+  description="Programmes for children, youth, adults and institutions — structured across age phases and skill levels under the Mpanziq framework."
+  transparentHeader
+>
+  <PageHero
+    eyebrow="Programmes"
+    title="Structured training, whatever age you start."
+    lede="Learners progress by age phase and by skill level — two systems running together, so nobody is held back or pushed on too early."
+    photo="journey-discover"
+    focus="center 45%"
+  />
+
+  <section class="section" aria-labelledby="prog-list-h">
+    <div class="wrap stack" style="--stack-gap: clamp(3rem, 8vw, 7rem)">
+      <h2 class="visually-hidden" id="prog-list-h">Programmes on offer</h2>
+      {programmes.map((p, i) => <ProgrammeRow programme={p} flip={i % 2 === 1} />)}
+    </div>
+  </section>
+
+  <section class="section on-dark">
+    <div class="wrap">
+      <SectionHead
+        eyebrow="The Mpanziq framework"
+        title="Two systems, running together."
+        lede="Creativity before content load. Fun-centred, emotionally safe learning. Purpose and identity discovered through art — with discipline, professionalism and industry readiness built in."
+        class="reveal"
+      />
+
+      <div class="fw">
+        <div class="fw__col reveal">
+          <h3 class="fw__h">A — Age-based schooling</h3>
+          <ul class="fw__list">
+            {phases.map((p) => (
+              <li>
+                <span class="fw__label">{p.label}</span>
+                <span class="fw__range">{p.range}</span>
+                <p>{p.note}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="fw__col reveal" style="--reveal-delay:110ms">
+          <h3 class="fw__h">B — Level-based progression</h3>
+          <ul class="fw__list">
+            {levels.map((l) => (
+              <li>
+                <span class="fw__label">{l.label}</span>
+                <span class="fw__range">{l.name}</span>
+                <p>{l.note}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <p class="fw__foot reveal">
+        Assessment is continuous — portfolio-based, performance-based, with balanced
+        academic testing and minimal reliance on traditional exams in the arts.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="wrap">
+      <SectionHead eyebrow="Fees" title="Lesson rates" lede={pricing.note} class="reveal" />
+      <div class="price">
+        {pricing.tiers.map((t, i) => (
+          <div class="price__card reveal" style={`--reveal-delay:${i * 100}ms`}>
+            <h3 class="price__h">{t.title}</h3>
+            <p class="price__unit">{t.unit}</p>
+            <dl class="price__rows">
+              {t.rows.map((r) => (
+                <div>
+                  <dt>{r.label}</dt>
+                  <dd>{r.price}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    photo="g-guitar-lesson"
+    title="Tell us where you are starting from."
+    body="Enrolment enquiries, school and church partnerships, and adult programmes."
+    primary={{ label: 'Enquire now', href: '/contact/' }}
+    secondary={{ label: 'Browse disciplines', href: '/disciplines/' }}
+  />
+</BaseLayout>
+
+<style>
+  .fw {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+  @media (min-width: 56rem) { .fw { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  .fw__h {
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-300);
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .fw__list { list-style: none; margin: 0; padding: 0; }
+  .fw__list li { padding-block: clamp(1.25rem, 2.5vw, 1.9rem); border-bottom: 1px solid var(--rule); }
+  .fw__label {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .fw__range {
+    display: block;
+    font-size: var(--step--1);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-300);
+    margin: 0.35rem 0 0.6rem;
+  }
+  .fw__list p { font-size: var(--step--1); color: var(--muted); max-width: 44ch; }
+  .fw__foot { margin-top: clamp(2rem, 4vw, 3rem); color: var(--muted); max-width: 54ch; }
+
+  .price {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    display: grid;
+    gap: clamp(1rem, 2.5vw, 2rem);
+  }
+  @media (min-width: 48rem) { .price { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .price__card { border: 1px solid var(--rule); padding: clamp(1.5rem, 3.5vw, 2.75rem); }
+  .price__h { font-family: var(--font-display); font-size: var(--step-2); letter-spacing: -0.02em; }
+  .price__unit {
+    font-size: var(--step--1);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-600);
+    margin-top: 0.4rem;
+  }
+  .price__rows { margin: clamp(1.5rem, 3vw, 2.25rem) 0 0; display: grid; gap: 0; }
+  .price__rows > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding-block: 0.9rem;
+    border-top: 1px solid var(--rule);
+  }
+  .price__rows dt { color: var(--muted); }
+  .price__rows dd {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    letter-spacing: -0.02em;
+  }
+</style>

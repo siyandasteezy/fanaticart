@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Ph from '../components/Ph.astro';
+---
+
+<BaseLayout title="Page not found" description="That page does not exist." transparentHeader>
+  <section class="nf">
+    <div class="nf__media media scrim">
+      <Ph name="theatre-seats" alt="" priority sizes="100vw" widths={[640, 960, 1400, 1920]} />
+    </div>
+    <div class="wrap nf__body">
+      <p class="nf__eyebrow">Error 404</p>
+      <h1 class="display display--l">This one is not on the programme.</h1>
+      <p class="nf__lede">The page you were looking for has moved or never existed.</p>
+      <div class="nf__actions">
+        <a class="btn btn--gold" href="/">Back to home <span class="arw" aria-hidden="true">→</span></a>
+        <a class="btn btn--ghost" href="/disciplines/">Browse disciplines</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf { position: relative; display: grid; place-items: center; text-align: center; min-height: 100svh; color: var(--paper); isolation: isolate; overflow: clip; }
+  .nf__media { position: absolute; inset: 0; z-index: -1; }
+  .nf__media :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .nf__body { display: grid; justify-items: center; gap: clamp(1rem, 2vw, 1.5rem); }
+  .nf__eyebrow { font-size: var(--step--1); letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-200); }
+  .nf h1 { max-width: 18ch; }
+  .nf__lede { color: color-mix(in srgb, var(--paper) 78%, transparent); max-width: 44ch; }
+  .nf__actions { display: flex; flex-wrap: wrap; gap: 0.85rem; justify-content: center; margin-top: 0.5rem; }
+</style>

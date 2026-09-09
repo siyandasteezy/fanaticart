@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+*.log
+.env
+.env.*
+.netlify/
+
+# Local scratch scripts
+scripts/.tmp-*
+
+# Client source documents — these are inputs to the build, not site source, and
+# the company profile contains financial and strategic detail. Kept out of the
+# repository because it is public. Remove these lines if you want them tracked.
+*.pdf
+2022_01_23,*.png
