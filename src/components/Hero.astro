@@ -17,7 +17,7 @@ import { site } from '../data/site';
   <div class="hero__body wrap">
     <p class="hero__eyebrow">Multidisciplinary arts education &amp; creative enterprise</p>
     <h1 class="display display--xl" id="hero-h">
-      Purpose.<br />Excellence.<br /><em>Creative Futures.</em>
+      Purpose.<br />Excellence.<br />Creative Futures.
     </h1>
     <p class="hero__lede">{site.description}</p>
     <div class="hero__actions">
@@ -42,6 +42,20 @@ import { site } from '../data/site';
     overflow: clip;
   }
   .hero__media { position: absolute; inset: 0; z-index: -1; }
+  /* The headline is gold — a mid-luminance colour — so the light beams behind it
+     have to be held down or the letterforms disappear into them. Weighted to the
+     band the type actually occupies, easing off at the top so the beams still read. */
+  .hero__media.scrim::after {
+    background: linear-gradient(
+      to top,
+      rgb(6 5 4 / 0.92) 0%,
+      rgb(6 5 4 / 0.82) 22%,
+      rgb(6 5 4 / 0.8) 48%,
+      rgb(6 5 4 / 0.72) 72%,
+      rgb(6 5 4 / 0.58) 90%,
+      rgb(6 5 4 / 0.64) 100%
+    );
+  }
   .hero__media :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: center 58%; }
 
   .hero__body {
@@ -55,10 +69,10 @@ import { site } from '../data/site';
     font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--gold-200);
+    /* Same gold as the headline. */
+    color: var(--gold-300);
   }
-  .hero h1 { max-width: 14ch; }
-  .hero h1 em { font-style: normal; color: var(--gold-300); }
+  .hero h1 { max-width: 14ch; color: var(--gold-300); }
   .hero__lede {
     max-width: 52ch;
     font-size: var(--step-1);
