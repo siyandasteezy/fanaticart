@@ -9,7 +9,7 @@ export const site = {
   tagline: 'Purpose. Excellence. Creative Futures.',
   /** The brand statement shown on the page (hero lede). */
   description:
-    'Fanatic Arts is a multidisciplinary arts education and creative enterprise restoring the art back to God.',
+    'Fanatic Arts is a multidisciplinary arts education and creative enterprise restoring the arts back to God.',
   /**
    * Search-engine description. Kept separate from the line above so the six
    * disciplines stay discoverable without lengthening the on-page statement.
