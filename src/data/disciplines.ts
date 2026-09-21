@@ -131,7 +131,7 @@ export const disciplines: Discipline[] = [
   {
     slug: 'creative-media',
     index: '06',
-    name: 'Creative Media',
+    name: 'Creative Media & Content Creation',
     short: 'Camera, edit, publish.',
     lede:
       'Photography, videography, editing and digital publishing — telling the story and getting it seen.',

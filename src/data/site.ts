@@ -16,7 +16,7 @@ export const site = {
    */
   seoDescription:
     'Fanatic Arts is a multidisciplinary arts education and creative enterprise — structured training for youth and adults across music, dance, drama, visual arts, technical production and creative media.',
-  vision: 'To restore the arts back to God.',
+  vision: 'RESTORING the arts back to God.',
   mission:
     'To help commercialise the arts by preserving the arts to last many generations to come.',
   founded: 'April 2008',
@@ -85,14 +85,14 @@ export const departments = [
     body: 'Private and group tuition across every discipline, built on skill development, discipline and professional readiness.',
   },
   {
-    title: 'Dance Studio',
+    title: 'Dance & Dramatic Arts',
     note: 'Movement & Performance Interpretation',
-    body: 'A specialised unit for expressive, performance-ready dancers — musical theatre movement, choreography for stage and live platforms.',
+    body: 'A specialised unit for expressive, performance-ready dancers and actors — musical theatre movement, choreography for stage and live platforms.',
   },
   {
-    title: 'Visuals & Photography',
-    note: 'Documentation & Branding',
-    body: 'Photography training and practice, visual branding for artists and productions, and documentation of performances and exhibitions.',
+    title: 'Ocular',
+    note: 'The Visuals & Photography Department',
+    body: 'Ocular is the visuals and photography department — photography training and practice, visual branding for artists and productions, and documentation of performances, showcases and exhibitions.',
   },
   {
     title: 'Umbono',

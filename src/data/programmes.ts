@@ -16,8 +16,6 @@ export const programmes: Programme[] = [
     lede:
       'Play-based, arts-integrated learning for the foundation and primary phase, moving into structured performance and early technical skill through high school.',
     points: [
-      'Foundation & Primary — Grade 000 to Grade 7',
-      'High School — Grade 8 to Grade 12',
       'Music, drama, dance, visual creativity and stage confidence',
       'Assessment through participation, portfolio and performance — not heavy formal exams',
     ],
@@ -63,16 +61,16 @@ export const pricing = {
       title: 'Individual (private) lessons',
       unit: 'per lesson',
       rows: [
-        { label: '30 minutes', price: 'R550' },
-        { label: '60 minutes', price: 'R600' },
+        { label: '30 minutes', price: 'R650' },
+        { label: '60 minutes', price: 'R700' },
       ],
     },
     {
       title: 'Group lessons',
       unit: 'per child',
       rows: [
-        { label: '30 minutes', price: 'R450' },
-        { label: '60 minutes', price: 'R500' },
+        { label: '30 minutes', price: 'R500' },
+        { label: '60 minutes', price: 'R550' },
       ],
     },
   ],
